@@ -1,3 +1,11 @@
 {
-  "version": 2
+  "version": 2,
+  "env": {
+    "LINE_CHANNEL_SECRET": "@line_channel_secret",
+    "LINE_ACCESS_TOKEN": "@line_access_token",
+    "OPENAI_API_KEY": "@openai_api_key",
+    "NOTION_TOKEN": "@notion_token",
+    "NOTION_DATABASE_ID": "@notion_database_id",
+    "OPENAI_MODEL": "@openai_model"
+  }
 }
