@@ -8,6 +8,7 @@
     "dev": "ts-node src/server.ts",
     "build": "tsc",
     "serve": "node dist/server.js",
+    "vercel-build": "echo 'Using API Routes - no build needed'"
   },
   "dependencies": {
     "@line/bot-sdk": "^8.0.0",
