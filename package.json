@@ -8,7 +8,7 @@
     "dev": "ts-node src/server.ts",
     "build": "tsc",
     "serve": "node dist/server.js",
-    "vercel-build": "tsc"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "@line/bot-sdk": "^8.0.0",
