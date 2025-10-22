@@ -50,8 +50,7 @@ const Schema = z.object({
   コロケーション: z.array(z.string()).optional(),
   例文: z.array(z.object({ 英: z.string(), 日: z.string().optional() })).min(1).max(3).optional(),
   CEFR: z.string().optional(),
-  類義語: z.array(z.string()).optional(),
-  出典URL: z.string().optional()
+  類義語: z.array(z.string()).optional()
 });
 type Entry = z.infer<typeof Schema>;
 
@@ -65,7 +64,7 @@ async function buildEntry(word: string): Promise<Entry> {
 
     const user = `対象語: "${word}"
 必要項目: 単語, 発音記号, 品詞, 意味(日本語/複数可), 語源(簡潔), コロケーション(自然なもの優先),
-例文 1〜3（{英, 日}）、CEFR, 類義語, 出典URL（あれば）。
+例文 1〜3（{英, 日}）、CEFR, 類義語。
 返答は日本語キーのJSONのみ。説明文は不要。`;
 
     const completion = await openai.chat.completions.create({
@@ -104,7 +103,6 @@ async function saveToNotion(e: Entry) {
       "コロケーション": e.コロケーション ? { rich_text: [{ text: { content: e.コロケーション.join(", ") } }] } : undefined,
       "CEFR": e.CEFR ? { select: { name: e.CEFR } } : undefined,
       "類義語": e.類義語 ? { rich_text: [{ text: { content: e.類義語.join(", ") } }] } : undefined,
-      "出典URL": e.出典URL ? { url: e.出典URL } : undefined,
     };
 
     const page = await notion.pages.create({
